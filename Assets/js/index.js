@@ -129,4 +129,19 @@ $(document).ready(function () {
             }
         });
     }
+
+    //To check if cards are matching
+    function checkMatch() {
+        if (flippedCards[0].substring(2) == flippedCards[1].substring(2)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    //To display game results
+    function gameOver(result) {
+        alert("You" + result)
+    }
 });
