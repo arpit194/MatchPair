@@ -7,7 +7,7 @@ $(document).ready(function () {
     let cardDict = {};
     let time = 30;
     let gamestarted = false;
-    let gameOver = true;
+    let isgameOver = true;
     let cardsMatched = 0;
     let difficulty = "Easy";
 
@@ -22,6 +22,11 @@ $(document).ready(function () {
         showDiv('settings');
     });
 
+    $('.playBtn').on("click", function () {
+        addCards();
+        showDiv('gamePage');
+    });
+
     $('.close').on("click", function () {
         closeDiv('instructions');
         closeDiv('settings');
@@ -34,6 +39,7 @@ $(document).ready(function () {
     $('#settings').on("click", function () {
         closeDiv('settings');
     });
+
 
     //To Close pop ups
     function closeDiv(id) {
@@ -88,19 +94,19 @@ $(document).ready(function () {
                     if (cardsMatched == 6) {
                         clearInterval(interval);
                         gameOver("Win");
-                        gameOver = true;
+                        isgameOver = true;
                     }
                     else if (time == 0) {
                         clearInterval(interval);
                         gameOver("Lose");
-                        gameOver = true;
+                        isgameOver = true;
                     }
                 }, 1000);
                 gamestarted = true;
             }
 
             //To flip cards
-            if (flippedCount < 2 && jQuery.inArray($(this)[0].id, flippedCards) == -1 && gameOver) {
+            if (flippedCount < 2 && jQuery.inArray($(this)[0].id, flippedCards) == -1 && isgameOver) {
                 $(this).addClass("is-flipped");
                 flippedCards.push($(this)[0].id);
                 flippedCount++;
